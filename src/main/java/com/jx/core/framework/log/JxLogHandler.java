@@ -36,7 +36,7 @@ public class JxLogHandler {
     private static final String CALL_FROM_RPC = "rpc";
     private static final String LOG_CONTEXT_KEY = "_logContext";
     private static final String MULTIPART_FORM_DATA = "multipart/form_data";
-    private static final String LOG_TRACEID = "traceId";
+    private static final String LOG_TRACEID = "traceID";
     @Value("${spring.application.name}")
     private String applicationName;
     @Value("${definition.business.id:0}")
@@ -53,12 +53,12 @@ public class JxLogHandler {
             LogInfo logInfo = new LogInfo();
             LogContext logContext = (LogContext) JxContextHolder.getContext().getProperty(LOG_CONTEXT_KEY);
             if (null == logContext) {
-                logInfo.setTraceId(this.generateTraceId());
+                logInfo.setTraceID(this.generateTraceID());
             } else {
-                logInfo.setTraceId(logContext.getTraceId());
+                logInfo.setTraceID(logContext.getTraceID());
             }
 
-            MDC.put(LOG_TRACEID, logInfo.getTraceId());
+            MDC.put(LOG_TRACEID, logInfo.getTraceID());
             CurrentUser currentUser = JxContextHolder.getContext().getCurrentUser();
             logInfo.setUserAccountId(currentUser.getUserAccountId());//用户账号id
             //请求时间 精确到毫秒
@@ -84,12 +84,12 @@ public class JxLogHandler {
             }
 
             if (CALL_FROM_RPC.equals(callFrom)) {
-                MDC.put(LOG_TRACEID, logInfo.getTraceId());
+                MDC.put(LOG_TRACEID, logInfo.getTraceID());
                 //请求时间 精确到毫秒
                 logInfo.setRequestTime(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(Calendar.getInstance().getTime()));
                 packRpcLogInfo(logInfo, joinPoint);//rpc请求日志信息
             } else if (CALL_FROM_JX_REST_PATH_CONTROLLER.equals(callFrom)) {
-                MDC.put(LOG_TRACEID, logInfo.getTraceId());
+                MDC.put(LOG_TRACEID, logInfo.getTraceID());
                 //请求时间 精确到毫秒
                 logInfo.setRequestTime(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(Calendar.getInstance().getTime()));
                 packHttpLogInfo(logInfo, joinPoint);//http请求日志信息
@@ -122,7 +122,7 @@ public class JxLogHandler {
             LogContext logContext = (LogContext) JxContextHolder.getContext().getProperty(LOG_CONTEXT_KEY);
             if (null != logContext) {
                 logInfo = new LogInfo();
-                logInfo.setTraceId(logContext.getTraceId());
+                logInfo.setTraceID(logContext.getTraceID());
                 ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
                 if (null != attributes) {
                     logInfo.setCallFrom(CALL_FROM_JX_REST_PATH_CONTROLLER);
@@ -133,7 +133,7 @@ public class JxLogHandler {
 
             if (null == logInfo) {
                 logInfo = new LogInfo();
-                logInfo.setTraceId(this.generateTraceId());
+                logInfo.setTraceID(this.generateTraceID());
                 logInfo.setCallFrom(CALL_FROM_JX_REST_PATH_CONTROLLER);
             }
 
@@ -240,7 +240,7 @@ public class JxLogHandler {
 
     private static Object generateLogContext(LogInfo logInfo) {
         LogContext logContext = new LogContext();
-        logContext.setTraceId(logInfo.getTraceId());
+        logContext.setTraceID(logInfo.getTraceID());
         return logContext;
     }
 
@@ -274,7 +274,7 @@ public class JxLogHandler {
         }
     }
 
-    private String generateTraceId() {
+    private String generateTraceID() {
         //雪花算法，中间十位 为业务id + 机器id(id由机器ip地址最后一组数字指定)
         String localIP = null;
         try {

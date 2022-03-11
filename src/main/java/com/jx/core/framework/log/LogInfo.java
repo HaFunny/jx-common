@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class LogInfo implements Serializable {
 
     private static final long serialVersionUID = 1464110783106667856L;
-    private String traceId;
+    private String traceID;
     private String userAccountId;
     private String requestTime;
     private String requestUrl;
@@ -28,12 +28,12 @@ public class LogInfo implements Serializable {
     public LogInfo() {
     }
 
-    public String getTraceId() {
-        return traceId;
+    public String getTraceID() {
+        return traceID;
     }
 
-    public void setTraceId(String traceId) {
-        this.traceId = traceId;
+    public void setTraceID(String traceID) {
+        this.traceID = traceID;
     }
 
     public String getUserAccountId() {
@@ -119,7 +119,7 @@ public class LogInfo implements Serializable {
     @Override
     public String toString() {
         return "LogInfo[" +
-                "traceId='" + traceId + '\'' +
+                "traceID='" + traceID + '\'' +
                 ", userAccountId='" + userAccountId + '\'' +
                 ", requestTime='" + requestTime + '\'' +
                 ", requestUrl='" + requestUrl + '\'' +
@@ -136,7 +136,7 @@ public class LogInfo implements Serializable {
     public String getLogString() {
         StringBuilder sb = new StringBuilder();
         String separator = "|";
-        sb.append(this.traceId)
+        sb.append(this.traceID)
                 .append(separator)
                 .append(this.clientIP)
                 .append(separator)

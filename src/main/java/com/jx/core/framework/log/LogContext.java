@@ -12,23 +12,23 @@ import java.io.Serializable;
 public class LogContext implements Serializable {
 
     private static final long serialVersionUID = 193018213879621871L;
-    private String traceId;
+    private String traceID;
 
     public LogContext() {
     }
 
-    public String getTraceId() {
-        return traceId;
+    public String getTraceID() {
+        return traceID;
     }
 
-    public void setTraceId(String traceId) {
-        this.traceId = traceId;
+    public void setTraceID(String traceID) {
+        this.traceID = traceID;
     }
 
     @Override
     public String toString() {
         return "LogContext [" +
-                "traceId='" + traceId + '\'' +
+                "traceID='" + traceID + '\'' +
                 ']';
     }
 }

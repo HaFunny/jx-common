@@ -46,8 +46,8 @@ public class JxHandlerExceptionResolver extends AbstractHandlerExceptionResolver
         LogContext logContext = (LogContext) JxContextHolder.getContext().getProperty(LOG_CONTEXT_KEY);
         String traceID = "";
         String traceInfo = "[JxException]";
-        if (null != logContext && null != logContext.getTraceId()) {
-            traceID = logContext.getTraceId();
+        if (null != logContext && null != logContext.getTraceID()) {
+            traceID = logContext.getTraceID();
             traceInfo = traceInfo + "[traceID:" + traceID + "]";
         }
 

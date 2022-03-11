@@ -277,8 +277,8 @@ public class JxRequestMappingHandlerAdapter extends RequestMappingHandlerAdapter
                 jsonStr = "[jxException]";
                 LogContext logContext = (LogContext) JxContextHolder.getContext().getProperty(LOG_CONTEXT_KEY);
                 paramString = "";
-                if (null != logContext && null != logContext.getTraceId()) {
-                    paramString = logContext.getTraceId();
+                if (null != logContext && null != logContext.getTraceID()) {
+                    paramString = logContext.getTraceID();
                     jsonStr = jsonStr + "[traceID:" + paramString + "]";
                 }
 
